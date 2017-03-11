@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
+});
+
+Route::get('customer', function () {
+    return view('pages.customer');
+});
+
+Route::get('addNewCustomer', function () {
+    return view('pages.addNewCustomer');
 });
