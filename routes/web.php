@@ -11,18 +11,27 @@
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('login', function () {
+//     return view('login');
+// });
 
-Route::get('/', function () {
-    return view('pages.welcome');
-});
+// Route::get('/', function () {
+//     return view('pages.welcome');
+// });
 
-Route::get('customer', function () {
-    return view('pages.customer');
-});
+// Route::get('customer', function () {
+//     return view('pages.customer');
+// });
 
-Route::get('addNewCustomer', function () {
-    return view('pages.addNewCustomer');
-});
+// Route::get('addNewCustomer', function () {
+//     return view('pages.addNewCustomer');
+// });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index');
+
+Route::get('customer', 'CustomerController@index');
+
+Route::get('addcustomer', 'CustomerController@add');
+
