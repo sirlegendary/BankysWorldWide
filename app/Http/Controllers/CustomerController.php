@@ -26,6 +26,11 @@ class CustomerController extends Controller
         return view('pages.customer');
     }
 
+    public function addCustomer()
+    {
+        return view('pages.addNewCustomer');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
