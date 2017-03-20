@@ -4,7 +4,10 @@
  -->
 @section('content')
 
-<form class="form-horizontal">
+<form class="form-horizontal" role="form" method="POST" action="{{ route('customer') }}">
+
+{{ csrf_field() }}
+
 <fieldset>
 
 <!-- Form Name -->
@@ -14,7 +17,7 @@
 <div class="form-group">
 <label class="col-md-4 control-label" for="firstName">First Name</label>
 <div class="col-md-4">
-<input id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control input-md">
+<input id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control input-md" required>
 
 </div>
 </div>
@@ -31,7 +34,7 @@
 <div class="form-group">
 <label class="col-md-4 control-label" for="surname">Surname</label>
 <div class="col-md-4">
-<input id="surname" name="surname" type="text" placeholder="Surname" class="form-control input-md">
+<input id="surname" name="surname" type="text" placeholder="Surname" class="form-control input-md" required>
 
 </div>
 </div>
@@ -49,7 +52,7 @@
 <div class="form-group">
 <label class="col-md-4 control-label" for="mobile">Mobile</label>
 <div class="col-md-4">
-<input id="mobile" name="mobile" type="text" placeholder="Mobile" class="form-control input-md">
+<input id="mobile" name="mobile" type="text" placeholder="Mobile" class="form-control input-md" required>
 
 </div>
 </div>
