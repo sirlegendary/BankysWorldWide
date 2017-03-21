@@ -20,3 +20,5 @@ Route::get('customer', 'CustomerController@index');
 
 Route::get('addNewCustomer', 'CustomerController@addCustomer');
 
+Route::post('addNewCustForm', 'CustomerController@addNewCustForm')->name('addNewCustForm');
+

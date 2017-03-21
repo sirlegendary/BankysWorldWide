@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -31,6 +33,36 @@ class CustomerController extends Controller
         return view('pages.addNewCustomer');
     }
 
+    public function addNewCustForm(Request $request)
+    {
+        $customer = new Customer;
+
+        $customer->first_name = $request->inputFirstName;
+        $customer->last_name = $request->inputSurname;
+        $customer->email = $request->inputEmail;
+        $customer->mobile = $request->inputMobile;
+        $customer->notes = $request->inputNote;
+
+        $customer->save();
+
+        return view('pages.customer');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'inputFirstName' => 'required|max:255',
+            'inputSurname' => 'required|max:255',
+            'inputEmail' => 'required|email|max:255|unique:customers',
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +81,11 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = new Customer;
+
+        $flight->name = $request->name;
+
+        $flight->save();
     }
 
     /**
