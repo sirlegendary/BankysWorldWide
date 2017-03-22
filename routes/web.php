@@ -14,11 +14,11 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('addNewCustForm')->name('home');
 
-Route::get('customer', 'CustomerController@index');
+Route::get('customer', 'CustomerController@index')->name('customer');
 
-Route::get('addNewCustomer', 'CustomerController@addCustomer');
+Route::get('addNewCustomer', 'CustomerController@addCustomer')->name('addNewCustomer');
 
 Route::post('addNewCustForm', 'CustomerController@addNewCustForm')->name('addNewCustForm');
 
