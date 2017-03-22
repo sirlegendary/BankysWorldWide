@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/Code/bankysworldwide":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/Code/bankysworldwide","hostpath":"/Users/was09/Documents/Project/BankysWorldWide","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/was09/Documents/Project/BankysWorldWide","disabled":false,"__vagrantfile":true}}}
