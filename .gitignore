@@ -1,3 +1,5 @@
+#vboxmanage list vms
+
 /node_modules
 /public/storage
 /public/hot
@@ -7,4 +9,4 @@
 Homestead.json
 Homestead.yaml
 .env
-.vagrant/
+.vagrant/*
