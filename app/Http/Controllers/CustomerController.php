@@ -25,7 +25,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('pages.customer');
+        $rawCustomer = Customer::all();
+
+        $listCustomer = $rawCustomer->sortBy('first_name');
+
+        return view('pages.customer', ['listCustomer' => $listCustomer]);
     }
 
     public function addCustomer()
@@ -43,9 +47,13 @@ class CustomerController extends Controller
         $customer->mobile = $request->inputMobile;
         $customer->notes = $request->inputNote;
 
-        $customer->save();
+        $saved = $customer->save();
 
-        return view('pages.customer');
+        // if(!$saved){
+        //     return view('pages.welcome');
+        // }
+
+        return redirect()->route('customer');
     }
 
     /**
