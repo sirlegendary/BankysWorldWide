@@ -50,12 +50,13 @@ class CustomerController extends Controller
         $saved = $customer->save();
 
             if($saved){
-                $latestCustomer = collect($customer)->last();
-                // dd($latestCustomer);
-                return $this->showCustomer($latestCustomer);
+                $latestCustomerID = collect($customer)->last();
+                $latestCustomer = $customer::where('id', $latestCustomerID)->get();
+                
+                return view('pages.profile', ['customer' => $latestCustomer]);
             }
 
-        return view('pages.welcome');
+        return redirect()->route('home');
     }
 
     public function showCustomer($id)

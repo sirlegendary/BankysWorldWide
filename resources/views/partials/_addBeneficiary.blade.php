@@ -1,35 +1,37 @@
+<div class="col-md-6">
 <form class="form-horizontal">
-<fieldset>
+	{{ csrf_field() }}
+	<input type="hidden" name="customer_id" value="{{ $customer['id'] }}">
+	  <fieldset>
+	    <legend>Add Beneficiaries</legend>
+	    <div class="form-group">
+	      <label for="name" class="col-lg-2 control-label">Name</label>
+	      <div class="col-lg-10">
+	        <input type="text" class="form-control" name="name" placeholder="Name" required>
+	      </div>
+	    </div>
 
-<!-- Form Name -->
-<legend>Add Customers Beneficiary Details</legend>
+	    <div class="form-group">
+	      <label for="bank" class="col-lg-2 control-label">Bank</label>
+	      <div class="col-lg-10">
+	        <input type="text" class="form-control" name="bank" placeholder="Name of Bank" required>
+	      </div>
+	    </div>
 
-<!-- Text input-->
-<div class="form-group">
-<label class="col-md-4 control-label" for="textinput">Name</label>
-<div class="col-md-4">
-<input id="textinput" name="textinput" type="text" placeholder="Name" class="form-control input-md">
+	    <div class="form-group">
+	      <label for="account" class="col-lg-2 control-label">Bank</label>
+	      <div class="col-lg-10">
+	        <input type="text" class="form-control" name="account" placeholder="Account number" required>
+	      </div>
+	    </div>
 
-</div>
-</div>
+	    <div class="form-group">
+	      <div class="col-lg-10 col-lg-offset-2">
+	      	<button type="submit" class="btn btn-primary">Submit</button>
+	        <button type="reset" class="btn btn-default">Cancel</button>
+	      </div>
+	    </div>
 
-<!-- Text input-->
-<div class="form-group">
-<label class="col-md-4 control-label" for="textinput">Bank Name</label>
-<div class="col-md-4">
-<input id="textinput" name="textinput" type="text" placeholder="Bank Name" class="form-control input-md">
-
-</div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-<label class="col-md-4 control-label" for="textinput">Account Number</label>
-<div class="col-md-4">
-<input id="textinput" name="textinput" type="text" placeholder="Account Number" class="form-control input-md">
-
-</div>
-</div>
-
-</fieldset>
+	 </fieldset>
 </form>
+</div>
