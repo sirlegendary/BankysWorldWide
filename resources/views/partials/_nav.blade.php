@@ -17,8 +17,8 @@
             <li><a href="{{ route('register') }}">Register</a></li>
         @else
         <li><a href="/">Dashboard</a></li>
-        <li><a href="customer">Customers</a></li>
-        <li><a href="addNewCustomer">Add new Customers</a></li>
+        <li><a href="/customer">Customers</a></li>
+        <li><a href="/addNewCustomer">Add new Customers</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                     {{ Auth::user()->name }} <span class="caret"></span>

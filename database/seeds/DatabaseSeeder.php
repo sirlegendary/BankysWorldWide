@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
 
         // $users = factory(App\User::class, 10)->create();
 
-        $customer = factory(App\Customer::class, 10)->create();
+        $customer = factory(App\Customer::class, 30)->create();
     }
 }

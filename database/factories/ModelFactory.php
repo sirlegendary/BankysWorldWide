@@ -30,7 +30,7 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
         'first_name' => $faker->firstName,
         'last_name' => $faker->LastName,
         'email' => $faker->unique()->safeEmail,
-        'mobile' => str_random(10),
+        'mobile' => $faker->unique()->e164PhoneNumber,
         'notes' => $faker->paragraph,
     ];
 });
