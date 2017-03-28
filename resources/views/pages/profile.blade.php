@@ -15,7 +15,9 @@
 		    	@include('partials._addBeneficiary')
 			</div>
 		@else 
-			yoooo
+			@foreach($beneficiary as $beneficiary)
+				{{ $beneficiary }}
+			@endforeach
 		@endif
 
 	@endforeach

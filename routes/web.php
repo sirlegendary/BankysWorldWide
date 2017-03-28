@@ -24,4 +24,6 @@ Route::post('addNewCustForm', 'CustomerController@addNewCustForm')->name('addNew
 
 Route::get('customer/{id}', 'CustomerController@showCustomer');
 
+Route::post('addNewBeneficiary', 'BeneficiaryController@addNew')->name('addNewBeneficiary');
+
 
