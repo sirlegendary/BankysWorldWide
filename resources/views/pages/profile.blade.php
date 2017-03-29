@@ -7,7 +7,8 @@
 		
 		<div class="page-header">
 			<h2>{{ $customer["first_name"].' '.$customer["last_name"] }}</h2>
-			<p>{{ $customer["mobile"].' / '.$customer["email"] }}</p>
+			<p><span>{{ $customer["mobile"].' / '.$customer["email"] }}</span> <a href="#" class="btn btn-primary btn-xs">Edit</a></p>
+
 		</div>
 
 		@if (!isset($beneficiary))
