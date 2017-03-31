@@ -12,7 +12,7 @@
 
 	<div class="list-group">
 	@foreach($listCustomer as $listCustomer)
-	  <a href="customer/{{ $listCustomer['id'] }}" class="list-group-item">
+	  <a href="/customer/{{ $listCustomer['id'] }}" class="list-group-item">
 	    <h4 class="list-group-item-heading">{{ $listCustomer["first_name"].' '.$listCustomer["last_name"] }}</h4>
 	    <p class="list-group-item-text">{{ $listCustomer["mobile"] }}</p>
 	  </a>

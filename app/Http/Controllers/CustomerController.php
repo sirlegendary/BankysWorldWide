@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Beneficiary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,6 +42,17 @@ class CustomerController extends Controller
     {
         $customer = new Customer;
 
+        $obj = json_decode($request,true);
+dd($request);
+        validator($obj);
+
+        // $this->validate($request, [
+        //     'first_name' => 'required|max:255',
+        //     'last_name' => 'required|max:255',
+        //     'email' => 'required|email|max:255|unique:customers',
+        //     'mobile' => 'required|email|max:255|unique:customers',
+        // ]);
+
         $customer->first_name = $request->inputFirstName;
         $customer->last_name = $request->inputSurname;
         $customer->email = $request->inputEmail;
@@ -51,9 +63,7 @@ class CustomerController extends Controller
 
             if($saved){
                 $latestCustomerID = collect($customer)->last();
-                $latestCustomer = $customer::where('id', $latestCustomerID)->get();
-                
-                return view('pages.profile', ['customer' => $latestCustomer]);
+                return $this->redirectToProfile($latestCustomerID);
             }
 
         return redirect()->route('home');
@@ -61,9 +71,7 @@ class CustomerController extends Controller
 
     public function showCustomer($id)
     {
-        $customer = Customer::where('id', $id)->get();
-        
-        return view('pages.profile', ['customer' => $customer]);
+        return $this->redirectToProfile($id);
     }
 
     /**
@@ -75,9 +83,10 @@ class CustomerController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'inputFirstName' => 'required|max:255',
-            'inputSurname' => 'required|max:255',
-            'inputEmail' => 'required|email|max:255|unique:customers',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:customers',
+            'mobile' => 'required|email|max:255|unique:customers',
         ]);
     }
 
@@ -99,11 +108,6 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = new Customer;
-
-        $flight->name = $request->name;
-
-        $flight->save();
     }
 
     /**
@@ -125,7 +129,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::where('id', $id)->get();
+        return view('pages.editCustomer', ['customer' => $customer]);
     }
 
     /**
@@ -135,9 +140,25 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $customer = Customer::find($request->id);
+
+        $customer->first_name = $request->inputFirstName;
+        $customer->last_name = $request->inputSurname;
+        $customer->email = $request->inputEmail;
+        $customer->mobile = $request->inputMobile;
+        $customer->notes = $request->inputNote;
+
+        $saved = $customer->save();
+
+        if($saved){
+                $updated = $customer::where('id', $request->id)->get();
+
+                return $this->redirectToProfile($request->id);
+        }
+
+        return redirectToProfile($request->id);
     }
 
     /**
@@ -149,5 +170,14 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function redirectToProfile($customer_id)
+    {
+        $customer = Customer::where('id', $customer_id)->get();
+
+        $beneficiary = Beneficiary::where('customer_id', $customer_id)->get();
+        
+        return view('pages.profile', ['customer' => $customer],['beneficiary' => $beneficiary]);
     }
 }

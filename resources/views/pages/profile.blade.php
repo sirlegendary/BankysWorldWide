@@ -7,17 +7,17 @@
 		
 		<div class="page-header">
 			<h2>{{ $customer["first_name"].' '.$customer["last_name"] }}</h2>
-			<p><span>{{ $customer["mobile"].' / '.$customer["email"] }}</span> <a href="#" class="btn btn-primary btn-xs">Edit</a></p>
+			<p><span>{{ $customer["mobile"].' / '.$customer["email"] }}</span> <a href="edit/{{ $customer['id'] }}" class="btn btn-primary btn-xs">Edit</a></p>
 
 		</div>
-
-		@if (!isset($beneficiary))
+		
+		@if(count($beneficiary) == 0)
 			<div class="row">
 		    	@include('partials._addBeneficiary')
 			</div>
 		@else 
 			@foreach($beneficiary as $beneficiary)
-				{{ $beneficiary }}
+				<p>{{ $beneficiary }}</p>
 			@endforeach
 		@endif
 

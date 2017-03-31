@@ -14,16 +14,20 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('addNewCustForm')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('customer', 'CustomerController@index')->name('customer');
+Route::get('/customer', 'CustomerController@index')->name('customer');
 
-Route::get('addNewCustomer', 'CustomerController@addCustomer')->name('addNewCustomer');
+Route::get('/addNewCustomer', 'CustomerController@addCustomer')->name('addNewCustomer');
 
-Route::post('addNewCustForm', 'CustomerController@addNewCustForm')->name('addNewCustForm');
+Route::post('/addNewCustForm', 'CustomerController@addNewCustForm')->name('addNewCustForm');
 
-Route::get('customer/{id}', 'CustomerController@showCustomer');
+Route::get('/customer/{id}', 'CustomerController@showCustomer');
 
-Route::post('addNewBeneficiary', 'BeneficiaryController@addNew')->name('addNewBeneficiary');
+Route::get('/customer/edit/{id}', 'CustomerController@edit');
+
+Route::post('/customer/update', 'CustomerController@update')->name('update');
+
+Route::post('/addNewBeneficiary', 'BeneficiaryController@addNew')->name('addNewBeneficiary');
 
 
