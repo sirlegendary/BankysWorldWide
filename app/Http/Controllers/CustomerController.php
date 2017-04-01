@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Beneficiary;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -42,22 +41,13 @@ class CustomerController extends Controller
     {
         $customer = new Customer;
 
-        $obj = json_decode($request,true);
-dd($request);
-        validator($obj);
+        $this->validator($request);
 
-        // $this->validate($request, [
-        //     'first_name' => 'required|max:255',
-        //     'last_name' => 'required|max:255',
-        //     'email' => 'required|email|max:255|unique:customers',
-        //     'mobile' => 'required|email|max:255|unique:customers',
-        // ]);
-
-        $customer->first_name = $request->inputFirstName;
-        $customer->last_name = $request->inputSurname;
-        $customer->email = $request->inputEmail;
-        $customer->mobile = $request->inputMobile;
-        $customer->notes = $request->inputNote;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->mobile = $request->mobile;
+        $customer->notes = $request->notes;
 
         $saved = $customer->save();
 
@@ -80,13 +70,14 @@ dd($request);
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    private function validator($request)
     {
-        return Validator::make($data, [
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:customers',
-            'mobile' => 'required|email|max:255|unique:customers',
+        $this->validate($request, [
+            'first_name'    => 'required|max:255',
+            'last_name'     => 'required|max:255',
+            'email'         => 'required|email|max:255|unique:customers',
+            'mobile'        => 'required|unique:customers|max:11|regex:/(07)[0-9]{9}/',
+            'notes'         => 'required',
         ]);
     }
 
@@ -142,13 +133,15 @@ dd($request);
      */
     public function update(Request $request)
     {
+        // $this->validator($request);
+
         $customer = Customer::find($request->id);
 
-        $customer->first_name = $request->inputFirstName;
-        $customer->last_name = $request->inputSurname;
-        $customer->email = $request->inputEmail;
-        $customer->mobile = $request->inputMobile;
-        $customer->notes = $request->inputNote;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->mobile = $request->mobile;
+        $customer->notes = $request->notes;
 
         $saved = $customer->save();
 

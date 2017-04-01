@@ -39,9 +39,9 @@
                 </ul>
             </li>
       </ul>
-      <form class="navbar-form navbar-right">
+      <!-- <form class="navbar-form navbar-right">
         <input type="text" class="form-control" placeholder="Search...">
-      </form>
+      </form> -->
       @endif
     </div>
   </div>

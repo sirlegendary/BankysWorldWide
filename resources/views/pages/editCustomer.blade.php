@@ -12,38 +12,48 @@
 		    <fieldset>
 		      <legend>Edit Customer Contact Details</legend>
 
+		      @if (count($errors) > 0)
+		          <div class="alert alert-danger">
+		              <ul>
+		                  @foreach ($errors->all() as $error)
+		                      <li>{{ $error }}</li>
+		                  @endforeach
+		              </ul>
+		          </div>
+		      @endif
+
 		      <div class="form-group">
-		        <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
+		        <label for="first_name" class="col-lg-2 control-label">First Name</label>
 		        <div class="col-lg-10">
-		          <input type="text" class="form-control" name="inputFirstName" value="{{ $customer['first_name'] }}" required>
+		          <input type="text" class="form-control" name="first_name" value="{{ $customer['first_name'] }}" required>
 		        </div>
 		      </div>
 
 		      <div class="form-group">
-		        <label for="inputSurname" class="col-lg-2 control-label">Surname</label>
+		        <label for="last_name" class="col-lg-2 control-label">Surname</label>
 		        <div class="col-lg-10">
-		          <input type="text" class="form-control" name="inputSurname" value="{{ $customer['last_name'] }}" required>
+		          <input type="text" class="form-control" name="last_name" value="{{ $customer['last_name'] }}" required>
 		        </div>
 		      </div>
 
 		      <div class="form-group">
-		        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+		        <label for="email" class="col-lg-2 control-label">Email</label>
 		        <div class="col-lg-10">
-		          <input type="text" class="form-control" name="inputEmail" value="{{ $customer['email'] }}">
+		          <input type="text" class="form-control" name="email" value="{{ $customer['email'] }}">
 		        </div>
 		      </div>
 
 		      <div class="form-group">
-		        <label for="inputMobile" class="col-lg-2 control-label">Mobile</label>
+		        <label for="mobile" class="col-lg-2 control-label">Mobile</label>
 		        <div class="col-lg-10">
-		          <input type="text" class="form-control" name="inputMobile" value="{{ $customer['mobile'] }}" required>
+		          <input type="text" class="form-control" name="mobile" value="{{ $customer['mobile'] }}" required>
 		        </div>
 		      </div>
 
 		      <div class="form-group">
-		        <label for="inputNote" class="col-lg-2 control-label">Note</label>
+		        <label for="notes" class="col-lg-2 control-label">Note</label>
 		        <div class="col-lg-10">
-		          <textarea class="form-control" rows="4" name="inputNote">{{ $customer['notes'] }}</textarea>
+		          <textarea class="form-control" rows="4" name="notes">{{ $customer['notes'] }}</textarea>
 		          <!-- <span class="help-block">You can write any comments about the customer here.</span> -->
 		        </div>
 		      </div>

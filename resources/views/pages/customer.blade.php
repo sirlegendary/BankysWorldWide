@@ -4,9 +4,15 @@
 @section('content')
 
 	<div class="jumbotron">
-	  <h1>Jumbotron</h1>
-	  <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-	  <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+	  
+	  <h2>Search for customer</h2>
+
+	  	<form role="search">
+		  <div class="form-group">
+		    <input type="text" name="search" class="form-control" id="searchForCustomer" placeholder="Search">
+		  </div>
+		</form>
+
 	</div>
 
 

@@ -10,15 +10,36 @@
 			<p><span>{{ $customer["mobile"].' / '.$customer["email"] }}</span> <a href="edit/{{ $customer['id'] }}" class="btn btn-primary btn-xs">Edit</a></p>
 
 		</div>
-		
+		<div class="row">
 		@if(count($beneficiary) == 0)
-			<div class="row">
+			
 		    	@include('partials._addBeneficiary')
 			</div>
 		@else 
+		<div class="col-md-6">
+		<h2>Beneficiaries</h2>
+			<table class="table table-striped table-hover ">
+			  <thead>
+			    <tr>
+			      <th>Name</th>
+			      <th>Bank</th>
+			      <th>Account Number</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			   
 			@foreach($beneficiary as $beneficiary)
-				<p>{{ $beneficiary }}</p>
+
+				<tr>
+			      <td>{{ $beneficiary['name'] }}</td>
+			      <td>{{ $beneficiary['bank'] }}</td>
+			      <td>{{ $beneficiary['account'] }}</td>
+			    </tr>
+
 			@endforeach
+			</tbody>
+			 </table>
+			 </div>
 		@endif
 
 	@endforeach
