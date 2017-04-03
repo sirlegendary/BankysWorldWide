@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('user_id');
             $table->integer('naira_rate');
             $table->integer('uk_pound');
+            $table->boolean('emailed');
             $table->timestamps();
         });
     }

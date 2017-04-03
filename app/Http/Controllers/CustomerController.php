@@ -86,9 +86,14 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajaxsearch(Request $request)
     {
-        //
+        // $member = Request::get('keyword');
+        // $results = Member::where('firstname', 'like', "$member%")
+        // ->orWhere('lastname', 'like', "$member%")
+        // ->orWhere('nickname', 'like', "$member%")->get();
+        // dd('yoooo');
+        return $request->all();
     }
 
     /**

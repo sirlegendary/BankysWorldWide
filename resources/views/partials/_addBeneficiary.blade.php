@@ -1,4 +1,4 @@
-<div class="col-md-6">
+
 <form class="form-horizontal" role="form" action="{{ route('addNewBeneficiary') }}" method="POST">
 	{{ csrf_field() }}
 	<input type="hidden" name="customer_id" value="{{ $customer['id'] }}">
@@ -34,4 +34,3 @@
 
 	 </fieldset>
 </form>
-</div>

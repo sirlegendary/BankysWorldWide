@@ -12,34 +12,45 @@
 		</div>
 		<div class="row">
 		@if(count($beneficiary) == 0)
-			
+			<div class="col-md-6">
 		    	@include('partials._addBeneficiary')
 			</div>
 		@else 
 		<div class="col-md-6">
-		<h2>Beneficiaries</h2>
+		<h2>Beneficiaries 
+			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#addBeneficiary">ADD NEW</button>
+		</h2>
+			<div id="addBeneficiary" class="collapse">
+		    	@include('partials._addBeneficiary')
+		  	</div>
 			<table class="table table-striped table-hover ">
-			  <thead>
+				<thead>
 			    <tr>
 			      <th>Name</th>
 			      <th>Bank</th>
 			      <th>Account Number</th>
+			      <th>Transaction</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			   
 			@foreach($beneficiary as $beneficiary)
-
 				<tr>
 			      <td>{{ $beneficiary['name'] }}</td>
 			      <td>{{ $beneficiary['bank'] }}</td>
 			      <td>{{ $beneficiary['account'] }}</td>
+			      <th>
+			      	<form>
+			      		<div class="form-group">
+				        	<button type="submit" class="btn btn-primary btn-sm">ADD</button>
+					    </div>
+			      	</form>
+			      </th>
 			    </tr>
 
 			@endforeach
-			</tbody>
-			 </table>
-			 </div>
+				</tbody>
+			</table>
+		</div>
 		@endif
 
 	@endforeach

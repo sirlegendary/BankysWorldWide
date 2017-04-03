@@ -15,8 +15,10 @@
 
 	</div>
 
+	<div class="list-group" id="ajaxResult"></div>
 
-	<div class="list-group">
+
+	<div class="list-group" id="listCustomer">
 	@foreach($listCustomer as $listCustomer)
 	  <a href="/customer/{{ $listCustomer['id'] }}" class="list-group-item">
 	    <h4 class="list-group-item-heading">{{ $listCustomer["first_name"].' '.$listCustomer["last_name"] }}</h4>

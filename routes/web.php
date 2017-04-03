@@ -28,6 +28,8 @@ Route::get('/customer/edit/{id}', 'CustomerController@edit');
 
 Route::post('/customer/update', 'CustomerController@update')->name('update');
 
+Route::get('/ajaxsearch', 'CustomerController@ajaxsearch');
+
 Route::post('/addNewBeneficiary', 'BeneficiaryController@addNew')->name('addNewBeneficiary');
 
 
