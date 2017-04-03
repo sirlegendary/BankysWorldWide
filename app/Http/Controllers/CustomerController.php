@@ -88,12 +88,13 @@ class CustomerController extends Controller
      */
     public function ajaxsearch(Request $request)
     {
-        // $member = Request::get('keyword');
-        // $results = Member::where('firstname', 'like', "$member%")
-        // ->orWhere('lastname', 'like', "$member%")
-        // ->orWhere('nickname', 'like', "$member%")->get();
-        // dd('yoooo');
-        return $request->all();
+        $keywords = $request->keywords;
+
+        $customer = Customer::where('first_name',   'like', $keywords.'%')
+                            // ->orWhere('last_name',  'like', $keywords.'%')
+                            ->orWhere('mobile',     'like', $keywords.'%')->get();
+        dd($customer);
+        return $customer;
     }
 
     /**

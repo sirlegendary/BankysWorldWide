@@ -4,24 +4,33 @@
 	<input type="hidden" name="customer_id" value="{{ $customer['id'] }}">
 	  <fieldset>
 	    <legend>Add Beneficiaries</legend>
+	    @if (count($errors) > 0)
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
 	    <div class="form-group">
-	      <label for="name" class="col-lg-2 control-label">Name</label>
+	      <label for="name" class="col-lg-2 control-label {{ $errors->has('name') ? ' has-error' : '' }}">Name</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" name="name" placeholder="Name" required>
+	        <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" required>
 	      </div>
 	    </div>
 
 	    <div class="form-group">
-	      <label for="bank" class="col-lg-2 control-label">Bank</label>
+	      <label for="bank" class="col-lg-2 control-label {{ $errors->has('bank') ? ' has-error' : '' }}">Bank</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" name="bank" placeholder="Name of Bank" required>
+	        <input type="text" class="form-control" name="bank" placeholder="Name of Bank" value="{{ old('bank') }}" maxlength="10" required>
 	      </div>
 	    </div>
 
 	    <div class="form-group">
-	      <label for="account" class="col-lg-2 control-label">Bank</label>
+	      <label for="account" class="col-lg-2 control-label">Account number</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" name="account" placeholder="Account number" required>
+	        <input type="text" class="form-control" name="account" placeholder="Account number" value="{{ old('account') }}" required>
 	      </div>
 	    </div>
 

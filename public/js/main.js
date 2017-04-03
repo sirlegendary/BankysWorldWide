@@ -3,7 +3,7 @@ $(document).ready(function() {
 	 $('#searchForCustomer').on('input', function() {
 		 var searchKeyword = $(this).val();
 
-		 if (searchKeyword.length >= 3) {
+		 if (searchKeyword.length >= 2) {
 
 		 	$.ajax({
                 url:'/ajaxsearch',
@@ -11,7 +11,7 @@ $(document).ready(function() {
                 data:{ keywords: searchKeyword },
                 dataType: 'json',
                 success: function(data) {
-                   ajaxReturned(data['keywords']);
+                   ajaxReturned(data);
                    console.log(data);
                 },
                 error: function (data) {
@@ -30,6 +30,7 @@ $(document).ready(function() {
 	 });
 
 	 function ajaxReturned(data) {
+	 	$('#ajaxResult').empty()
 	 	$('#ajaxResult').append(data);
 
 	 	// $('#ajaxResult').append('<a href="/customer/23" class="list-group-item">'+

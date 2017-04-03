@@ -22,6 +22,12 @@ class BeneficiaryController extends Controller
     {
         $beneficiary = new Beneficiary;
 
+        $this->validate($request, [
+            'name'    => 'required|max:255',
+            'bank'    => 'required|max:255',
+            'account' => 'required|max:10|regex:/[0-9]/',
+        ]);
+
         $beneficiary->name = $request->name;
         $beneficiary->bank = $request->bank;
         $beneficiary->account = $request->account;
@@ -44,4 +50,5 @@ class BeneficiaryController extends Controller
 
         return redirect()->route('home');
     }
+
 }
