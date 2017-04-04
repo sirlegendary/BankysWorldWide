@@ -32,4 +32,6 @@ Route::get('/ajaxsearch', 'CustomerController@ajaxsearch');
 
 Route::post('/customer/addNewBeneficiary', 'BeneficiaryController@addNew')->name('addNewBeneficiary');
 
+Route::get('/customer/addTransaction/{id}', 'BeneficiaryController@showNewTransactionForm')->name('addTransaction');
+
 

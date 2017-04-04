@@ -10,4 +10,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    // public function redirectToProfile($customer_id)
+    // {
+    //     $customer = Customer::where('id', $customer_id)->get();
+
+    //     $beneficiary = Beneficiary::where('customer_id', $customer_id)->get();
+        
+    //     return view('pages.profile', ['customer' => $customer],['beneficiary' => $beneficiary]);
+    // }
 }

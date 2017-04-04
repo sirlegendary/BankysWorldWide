@@ -51,4 +51,15 @@ class BeneficiaryController extends Controller
         return redirect()->route('home');
     }
 
+    public function showNewTransactionForm($id)
+    {
+        $customer = Beneficiary::find($id)->customer;
+
+        $beneficiary = Beneficiary::find($id);
+
+        // dd($beneficiary['name']);
+
+        return view('pages.addTransaction')->with('customer', $customer)->with('beneficiary', $beneficiary);
+    }
+
 }

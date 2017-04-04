@@ -42,13 +42,8 @@
 			      <td>{{ $beneficiary['name'] }}</td>
 			      <td>{{ $beneficiary['bank'] }}</td>
 			      <td>{{ $beneficiary['account'] }}</td>
-			      <th>
-			      	<form>
-			      		<div class="form-group">
-				        	<button type="submit" class="btn btn-primary btn-sm">ADD</button>
-					    </div>
-			      	</form>
-			      </th>
+			      <td><a href="/customer/addTransaction/{{ $beneficiary['id'] }}" class="btn btn-primary btn-xs">ADD</a>
+			      </td>
 			    </tr>
 
 			@endforeach
