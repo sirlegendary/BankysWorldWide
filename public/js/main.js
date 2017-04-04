@@ -24,6 +24,7 @@ $(document).ready(function() {
 
 				$('#ajaxResult').empty();
 				$('#listCustomer').hide();
+				
 				$.each(data, function() {
 				 	$('#ajaxResult').append('<a href="/customer/' + this.id + '" class="list-group-item">'+
 				    '<h4 class="list-group-item-heading">' + this.first_name + ' ' + this.last_name + '</h4>' +

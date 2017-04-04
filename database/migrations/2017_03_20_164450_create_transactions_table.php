@@ -20,8 +20,9 @@ class CreateTransactionsTable extends Migration
             $table->integer('naira_rate');
             $table->integer('uk_pound');
             $table->boolean('emailed');
+            $table->text('notes')->nullable();
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
