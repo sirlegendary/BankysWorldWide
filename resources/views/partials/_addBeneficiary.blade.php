@@ -23,7 +23,7 @@
 	    <div class="form-group">
 	      <label for="bank" class="col-lg-2 control-label {{ $errors->has('bank') ? ' has-error' : '' }}">Bank</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" name="bank" placeholder="Name of Bank" value="{{ old('bank') }}" maxlength="10" required>
+	        <input type="text" class="form-control" name="bank" placeholder="Name of Bank" value="{{ old('bank') }}" required>
 	      </div>
 	    </div>
 

@@ -17,12 +17,16 @@
 			</div>
 		@else 
 		<div class="col-md-6">
-		<h2>Beneficiaries 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#addBeneficiary">ADD NEW</button>
+		<h2>Beneficiaries {{ count($beneficiary) }}
+			@if(count($beneficiary) < 5) 
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#addBeneficiary">ADD NEW</button>
+			@endif
 		</h2>
+
 			<div id="addBeneficiary" class="collapse">
 		    	@include('partials._addBeneficiary')
 		  	</div>
+
 			<table class="table table-striped table-hover ">
 				<thead>
 			    <tr>
