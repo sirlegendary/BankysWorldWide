@@ -1,41 +1,43 @@
 $(document).ready(function() {
 	 
-	 $('#searchForCustomer').on('input', function() {
-		 var searchKeyword = $(this).val();
+	$('#searchForCustomer').on('input', function() {
+		 
+		var searchKeyword = $(this).val();
 
-		 if (searchKeyword.length >= 2) {
+		if(! /^[a-zA-Z0-9]+$/.test(searchKeyword)) {
+		 	console.log('Only Alphanumeric charecters allowed.');
+		 	return false;
+		}
 
-		 	$.ajax({
-                url:'/ajaxsearch',
-                type:'GET',
-                data:{ keywords: searchKeyword },
-                dataType: 'json',
-                success: function(data) {
-                   ajaxReturned(data);
-                   console.log(data);
-                },
-                error: function (data) {
-                	console.log('error');
-                    console.log(data);
-                }
-            });
+		if (searchKeyword.length >= 2) {
 
-			// $.post('search.php', { keywords: searchKeyword }, function(data) {
-			// 	 $('ul#content').empty()
-			// 	 $.each(data, function() {
-			// 	 $('ul#content').append('<li><a href="example.php?id=' + this.id + '">' + this.title + '</a></li>');
-			// 	 });
-			// }, "json");
-		 }
-	 });
+			$.get('/ajaxsearch', { keywords: searchKeyword }, function(data) {
+				
+				var totalCustomerFound = data.length;
+				
+				if(totalCustomerFound == 0) {
+					$('#ajaxResult').empty();
+					$('#ajaxResult').append('<div class="panel panel-default"><div class="panel-body">'
+											+ 'No Customer found!</div></div>');
+					return false;
+				}
 
-	 function ajaxReturned(data) {
-	 	$('#ajaxResult').empty()
-	 	$('#ajaxResult').append(data);
+				$('#ajaxResult').empty();
+				$('#listCustomer').hide();
+				$.each(data, function() {
+				 	$('#ajaxResult').append('<a href="/customer/' + this.id + '" class="list-group-item">'+
+				    '<h4 class="list-group-item-heading">' + this.first_name + ' ' + this.last_name + '</h4>' +
+				    '<p class="list-group-item-text">' + this.mobile + '</p></a>');
+				});
+			}, "json");
 
-	 	// $('#ajaxResult').append('<a href="/customer/23" class="list-group-item">'+
-	  //   '<h4 class="list-group-item-heading">'.name.'</h4>' +
-	  //   '<p class="list-group-item-text">'.mobile.'</p></a>');
-	 }
+		} else {
+		 	
+		 	$('#listCustomer').show();
+		 	$('#ajaxResult').empty();
+
+		}
+
+	});
 
 });

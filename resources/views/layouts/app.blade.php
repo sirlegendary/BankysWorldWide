@@ -18,10 +18,6 @@
     <link rel="stylesheet" href="/css/app.css">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-
-    <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -37,5 +33,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <!-- Custom Scripts -->
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

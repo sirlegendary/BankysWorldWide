@@ -82,9 +82,9 @@ class CustomerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Search customer table for first name or mobile and return result as json.
      *
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function ajaxsearch(Request $request)
     {
@@ -93,7 +93,6 @@ class CustomerController extends Controller
         $customer = Customer::where('first_name',   'like', $keywords.'%')
                             // ->orWhere('last_name',  'like', $keywords.'%')
                             ->orWhere('mobile',     'like', $keywords.'%')->get();
-        dd($customer);
         return $customer;
     }
 
