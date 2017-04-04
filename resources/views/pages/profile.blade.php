@@ -17,7 +17,7 @@
 			</div>
 		@else 
 		<div class="col-md-6">
-		<h2>Beneficiaries {{ count($beneficiary) }}
+		<h2>Beneficiaries
 			@if(count($beneficiary) < 5) 
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#addBeneficiary">ADD NEW</button>
 			@endif

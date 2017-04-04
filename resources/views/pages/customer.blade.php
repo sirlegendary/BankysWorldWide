@@ -5,7 +5,7 @@
 
 	<div class="jumbotron">
 	  
-	  <h2>{{ count($listCustomer) }} Customers - Search</h2>
+	  <h2>{{ count($listCustomer) }} Customers</h2>
 
 	  @include('partials._searchBar')
 
