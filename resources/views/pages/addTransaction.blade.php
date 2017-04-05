@@ -10,7 +10,7 @@
 			<label class="sr-only" for="exchangeRate">Exchange Rate</label>
 			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
 			    <div class="input-group-addon">&#8358;</div>
-			    <input type="text" name="exchangeRate" class="form-control" id="exchangeRate" placeholder="Exchange Rate">
+			    <input type="number" name="exchangeRate" class="form-control " id="exchangeRate" placeholder="Exchange Rate">
 			</div>
 		</div>
 		<div class="col-md-4">

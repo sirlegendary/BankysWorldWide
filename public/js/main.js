@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	 
+	 // search function
 	$('#searchForCustomer').on('input', function() {
 		 
 		var searchKeyword = $(this).val();
@@ -40,5 +40,46 @@ $(document).ready(function() {
 		}
 
 	});
+
+
+	//transaction input validation
+
+	$('#uk_pound').on( "keyup", function( event ) {
+		
+		var selection = window.getSelection().toString();
+		var dayRate = $('#exchangeRate').val();
+
+		if(dayRate < 0){
+			alert('enter day rate first');
+			return false;
+		}
+
+	    if ( selection !== '' ) {
+	        return;
+	    }
+
+	    if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+	        return;
+	    }
+
+	    var $this = $( this );
+		var input = $this.val();
+		 
+		var input = input.replace(/[\D\s\._\-]+/g, "");
+		 
+		input = input ? parseInt( input, 10 ) : 0;
+		 
+		$this.val( function() {
+		    return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
+		} );
+
+		var dayRate = $('#exchangeRate').val();
+
+		var totalNaira = dayRate*input;
+
+		$('#totalNaira').val( totalNaira );
+
+	});
+
 
 });
