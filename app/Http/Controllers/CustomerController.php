@@ -77,7 +77,7 @@ class CustomerController extends Controller
             'last_name'     => 'required|max:255',
             'email'         => 'required|email|max:255|unique:customers',
             'mobile'        => 'required|unique:customers|max:11|regex:/(07)[0-9]{9}/',
-            'notes'         => 'required',
+            // 'notes'         => 'required',
         ]);
     }
 

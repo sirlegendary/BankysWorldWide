@@ -7,7 +7,7 @@
 		
 		<div class="page-header">
 			<h2>{{ $customer["first_name"].' '.$customer["last_name"] }}</h2>
-			<p><span>{{ $customer["mobile"].' / '.$customer["email"] }}</span> <a href="edit/{{ $customer['id'] }}" class="btn btn-primary btn-xs">Edit</a></p>
+			<p><span>{{ $customer["mobile"].' / '.$customer["email"] }}</span> <a href="/customer/edit/{{ $customer['id'] }}" class="btn btn-primary btn-xs">Edit</a></p>
 
 		</div>
 		<div class="row">
@@ -17,38 +17,27 @@
 			</div>
 		@else 
 		<div class="col-md-6">
-		<h2>Beneficiaries
-			@if(count($beneficiary) < 5) 
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#addBeneficiary">ADD NEW</button>
-			@endif
-		</h2>
-
 			<div id="addBeneficiary" class="collapse">
 		    	@include('partials._addBeneficiary')
 		  	</div>
 
-			<table class="table table-striped table-hover ">
-				<thead>
-			    <tr>
-			      <th>Name</th>
-			      <th>Bank</th>
-			      <th>Account Number</th>
-			      <th>Transaction</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			@foreach($beneficiary as $beneficiary)
-				<tr>
-			      <td>{{ $beneficiary['name'] }}</td>
-			      <td>{{ $beneficiary['bank'] }}</td>
-			      <td>{{ $beneficiary['account'] }}</td>
-			      <td><a href="/customer/addTransaction/{{ $beneficiary['id'] }}" class="btn btn-primary btn-xs">ADD</a>
-			      </td>
-			    </tr>
-
-			@endforeach
-				</tbody>
-			</table>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+				    <h3 class="panel-title">Beneficiaries
+				    	@if(count($beneficiary) < 5) 
+							<button type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-target="#addBeneficiary">ADD NEW</button>
+						@endif
+				    </h3>
+				</div>
+				<div class="panel-body">
+						@foreach($beneficiary as $beneficiary)
+							<a href="/customer/addTransaction/{{ $beneficiary['id'] }}" class="list-group-item">
+							    <h4 class="list-group-item-heading">{{ $beneficiary['name'] }}</h4>
+							    <p class="list-group-item-text">{{ $beneficiary['account'].'/'.$beneficiary['bank'] }}</p>
+							</a>
+						@endforeach
+				</div>
+			</div>
 		</div>
 		@endif
 
