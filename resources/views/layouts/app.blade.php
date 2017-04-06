@@ -33,6 +33,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
     <!-- Custom Scripts -->
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
