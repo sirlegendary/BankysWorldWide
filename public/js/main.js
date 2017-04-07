@@ -46,13 +46,11 @@ $(document).ready(function() {
 
 	$('.transactionIN').on( "keyup", function( event ) {
 		
-		// var input = $('#uk_pound').val();
+		var uk_pound = $('#uk_pound').val();
 		var dayRate = $('#exchangeRate').val();
 		var totalNaira = $('#totalNaira').val();
 
-		dayRateInput(dayRate);
-		 
-		
+
 	    var selection = window.getSelection().toString();
 	    if ( selection !== '' ) {
 	        return;
@@ -62,52 +60,15 @@ $(document).ready(function() {
 	        return;
 	    }
 
-	    var $this = $( this );
-		var input = $this.val();
- 
-	var input = input.replace(/[\D\s\._\-]+/g, "");
-	 
-	input = input ? parseInt( input, 10 ) : 0;
-	 
+		totalNaira = (dayRate*uk_pound).toFixed(2);
 
-	$('#uk_pound').val( function() {
-	    return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
-	} );
-
-	var totalNaira = dayRate*input;
-
-	$('#totalNaira').val( function() {
-	    return ( totalNaira === 0 ) ? "" : totalNaira.toLocaleString( "en-US" );
-	} );
-
-		
-
-		// $('#totalNaira').val( totalNaira );
+		$('#totalNaira').val( totalNaira );
 
 	});
 
 
 });
 
-
-function dayRateInput(dayRate){
-
-	if($('#exchangeRate').val()) {
-		
-	$('#exchangeRate').val( function() {
-	    return ( dayRate === 0 ) ? "" : dayRate.toLocaleString( "en-US" );
-	} );
-		console.log(dayRate);
-	} else {
-		alert('please provide the exchange rate');
-		return false;
-	}
-
-	// var input = dayRate.replace(/[\D\s\._\-]+/g, "");
-	 
-	// input = input ? parseInt( input, 10 ) : 0;
-
-}
 
 
 
