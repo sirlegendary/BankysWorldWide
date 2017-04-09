@@ -1,7 +1,15 @@
 $(document).ready(function() {
 	 // search function
 	$('#searchForCustomer').on('input', function() {
-		 
+
+		$(document).keypress(	//prevent enter key from reloading page
+		    function(event){
+		     if (event.which == '13') {
+		        event.preventDefault();
+		    }
+		});
+
+ 
 		var searchKeyword = $(this).val();
 
 		if(! /^[a-zA-Z0-9]+$/.test(searchKeyword)) {
@@ -42,14 +50,12 @@ $(document).ready(function() {
 	});
 
 
-	//transaction input validation
+	//transaction input validation: https://webdesign.tutsplus.com/tutorials/auto-formatting-input-value--cms-26745
 
 	$('.transactionIN').on( "keyup", function( event ) {
-		
 		var uk_pound = $('#uk_pound').val();
 		var dayRate = $('#exchangeRate').val();
 		var totalNaira = $('#totalNaira').val();
-
 
 	    var selection = window.getSelection().toString();
 	    if ( selection !== '' ) {
@@ -60,11 +66,16 @@ $(document).ready(function() {
 	        return;
 	    }
 
-		totalNaira = (dayRate*uk_pound).toFixed(2);
+	    totalNaira = (dayRate*uk_pound).toFixed(2);
+
+		console.log(totalNaira);
 
 		$('#totalNaira').val( totalNaira );
 
 	});
+
+
+	
 
 
 });

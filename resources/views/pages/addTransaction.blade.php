@@ -24,10 +24,6 @@
 		 </table>
 	</div>
 
-	{{-- <div class="page-header">
-		<h3 class="typography">{{ $beneficiary['name'] }}</h3>
-	</div> --}}
-	
 	<div class="row">
 		<div class="col-md-4">
 			<label class="sr-only" for="exchangeRate">Exchange Rate</label>
@@ -51,8 +47,12 @@
 			</div>
 		</div>
 	</div>
-<br>
-<div class="row"><button type="submit" name="submit" class="btn btn-default">ADD</button></div>
+	<br/>
+	<div class="form-group">
+		<div class="col-lg-10 col-lg-offset-2">
+			<button type="submit" name="submit" class="btn btn-primary">ADD</button>
+		</div>
+	</div>
 
 	
 
