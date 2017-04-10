@@ -52,7 +52,7 @@ $(document).ready(function() {
 
 	//transaction input validation: https://webdesign.tutsplus.com/tutorials/auto-formatting-input-value--cms-26745
 
-	$('.transactionIN').on( "keyup", function( event ) {
+	$('.transactionIN').on('input', function( event ) {
 		var uk_pound = $('#uk_pound').val();
 		var dayRate = $('#exchangeRate').val();
 		var totalNaira = $('#totalNaira').val();
