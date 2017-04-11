@@ -31,8 +31,8 @@
 	</div>
 
 
-	@include('partials._addTransaction');
-	
+	@include('partials._addTransaction')
+
 </div>
 
 @if(isset($transaction))
