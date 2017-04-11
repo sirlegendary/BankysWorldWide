@@ -151,12 +151,11 @@ class CustomerController extends Controller
         $saved = $customer->save();
 
         if($saved){
-                $updated = $customer::where('id', $request->id)->get();
 
-                return $this->redirectToProfile($request->id);
+            return redirect()->route('showCustomer', ['id' => $request->id]);
         }
 
-        return redirectToProfile($request->id);
+        return redirect()->route('showCustomer', ['id' => $request->id]);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Beneficiary;
+use App\Transaction;
 use Illuminate\Http\Request;
 
 class BeneficiaryController extends Controller
@@ -37,15 +38,7 @@ class BeneficiaryController extends Controller
 
         if($saved){
 
-        	$customer = new Customer;
-
-        	$customer_id = $request->customer_id;
-
-        	$customer = Customer::where('id', $customer_id)->get();
-
-        	$beneficiary = $beneficiary::where('customer_id', $customer_id)->get();
-            
-            return view('pages.profile', ['customer' => $customer],['beneficiary' => $beneficiary]);
+            return redirect()->route('showCustomer', ['id' => $request->customer_id]);
         }
 
         return redirect()->route('home');
@@ -57,9 +50,32 @@ class BeneficiaryController extends Controller
 
         $beneficiary = Beneficiary::find($id);
 
-        // dd($beneficiary['name']);
+        $transaction = Transaction::where('beneficiary_id', $beneficiary['id'])
+                                    ->orderBy('created_at', 'desc')
+                                    ->get();
 
-        return view('pages.addTransaction')->with('customer', $customer)->with('beneficiary', $beneficiary);
+        return view('pages.addTransaction')
+            ->with('customer', $customer)
+            ->with('beneficiary', $beneficiary)
+            ->with('transaction', $transaction);
+    }
+
+    public function saveNewTransaction(Request $request)
+    {
+        $transaction = new Transaction;
+        $transaction->beneficiary_id = $request->beneficiary_id;
+        $transaction->naira_rate = $request->naira_rate;
+        $transaction->uk_pound = $request->uk_pound;
+        $transaction->total_naira = $request->total_naira;
+        $transaction->emailed = false;
+
+        $saved = $transaction->save();
+
+        if($saved){
+            return redirect()->route('addTransaction', ['id' => $request->beneficiary_id]);
+        }
+
+        return redirect()->route('home');
     }
 
 }

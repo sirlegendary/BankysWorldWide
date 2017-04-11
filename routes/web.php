@@ -22,7 +22,7 @@ Route::get('/addNewCustomer', 'CustomerController@addCustomer')->name('addNewCus
 
 Route::post('/addNewCustForm', 'CustomerController@addNewCustForm')->name('addNewCustForm');
 
-Route::get('/customer/{id}', 'CustomerController@showCustomer');
+Route::get('/customer/{id}', 'CustomerController@showCustomer')->name('showCustomer');
 
 Route::get('/customer/edit/{id}', 'CustomerController@edit');
 
@@ -33,5 +33,7 @@ Route::get('/ajaxsearch', 'CustomerController@ajaxsearch');
 Route::post('/customer/addNewBeneficiary', 'BeneficiaryController@addNew')->name('addNewBeneficiary');
 
 Route::get('/customer/addTransaction/{id}', 'BeneficiaryController@showNewTransactionForm')->name('addTransaction');
+
+Route::post('/customer/saveNewTransaction', 'BeneficiaryController@saveNewTransaction')->name('saveNewTransaction');
 
 

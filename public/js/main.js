@@ -52,6 +52,9 @@ $(document).ready(function() {
 
 	//transaction input validation: https://webdesign.tutsplus.com/tutorials/auto-formatting-input-value--cms-26745
 
+	$('#transactionSubmit').prop('disabled', true);
+	$('#totalNaira').prop('disabled', true);
+	
 	$('.transactionIN').on('input', function( event ) {
 		var uk_pound = $('#uk_pound').val();
 		var dayRate = $('#exchangeRate').val();
@@ -68,9 +71,17 @@ $(document).ready(function() {
 
 	    totalNaira = (dayRate*uk_pound).toFixed(2);
 
-		console.log(totalNaira);
+		// console.log(totalNaira);
 
 		$('#totalNaira').val( totalNaira );
+
+		if($('#totalNaira').val() > 1) {
+			$('#transactionSubmit').prop('disabled', false);
+		} else {
+			$('#transactionSubmit').prop('disabled', true);
+		}
+
+		$('.totNaira').val( totalNaira );
 
 	});
 

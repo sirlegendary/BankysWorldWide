@@ -3,6 +3,12 @@
 
 @section('content')
 
+<ul class="breadcrumb">
+  <li><a href="/customer/{{ $customer['id'] }}">
+  	<span class="glyphicon glyphicon-arrow-left"></span> {{ $customer["first_name"].' '.$customer["last_name"] }}
+  </a></li>
+</ul>
+
 <div class="well bs-component">
 
 	<div class="row">
@@ -24,46 +30,24 @@
 		 </table>
 	</div>
 
-	<div class="row">
-		<div class="col-md-4">
-			<label class="sr-only" for="exchangeRate">Exchange Rate</label>
-			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-			    <div class="input-group-addon">&#8358;</div>
-			    <input type="number" name="exchangeRate" class="form-control transactionIN" id="exchangeRate" placeholder="Exchange Rate">
-			</div>
-		</div>
-		<div class="col-md-4">
-			<label class="sr-only" for="uk_pound">Received Pound</label>
-			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-			    <div class="input-group-addon">&pound;</div>
-			    <input type="number" name="uk_pound" class="form-control transactionIN" id="uk_pound" placeholder="Pound Received">
-			</div>
-		</div>
-		<div class="col-md-4">
-			<label class="sr-only" for="totalNaira"></label>
-			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-			    <div class="input-group-addon">&#8358;</div>
-			    <input type="text" name="totalNaira" class="form-control" id="totalNaira" value="" disabled="">
-			</div>
-		</div>
-	</div>
-	<br/>
-	<div class="form-group">
-		<div class="col-lg-10 col-lg-offset-2">
-			<button type="submit" name="submit" class="btn btn-primary">ADD</button>
-		</div>
-	</div>
 
+	@include('partials._addTransaction');
 	
-
-	
-
-	<!-- {{ $customer }} -->
-
-	
-
-	<!-- {{ $beneficiary }} -->
-
 </div>
+
+@if(isset($transaction))
+	@foreach($transaction as $transaction)
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">{{ $transaction['created_at'] }}</h3>
+		  </div>
+		  <div class="panel-body">
+		    {{ $transaction['total_naira'] }}
+		  </div>
+		</div>
+		{{-- <p>{{ $transaction }}</p> --}}
+	@endforeach
+@endif
+
 
 @endsection
