@@ -16,9 +16,9 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('beneficiary_id');
-            $table->integer('naira_rate');
-            $table->integer('uk_pound');
-            $table->integer('total_naira');
+            $table->string('naira_rate');
+            $table->string('uk_pound');
+            $table->string('total_naira');
             $table->boolean('emailed');
             $table->text('notes')->nullable();
             $table->timestamps();
