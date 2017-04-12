@@ -62,6 +62,12 @@ class BeneficiaryController extends Controller
 
     public function saveNewTransaction(Request $request)
     {
+        $this->validate($request, [
+            'naira_rate'    => 'required',
+            'uk_pound'    => 'required',
+            'total_naira' => 'required',
+        ]);
+
         $transaction = new Transaction;
         $transaction->beneficiary_id = $request->beneficiary_id;
         $transaction->naira_rate = $request->naira_rate;
