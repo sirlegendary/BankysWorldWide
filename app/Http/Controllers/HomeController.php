@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Charts;
+use App\Customer;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $chart = Charts::database(Customer::all(), 'bar', 'highcharts')
+            ->elementLabel("Total")
+            ->title('Daily Customer Chart')
+            ->dimensions(0, 500)
+            ->responsive(false)
+            ->groupByDay();
+
+        return view('home', ['chart' => $chart]);
     }
 }

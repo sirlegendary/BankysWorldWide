@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('styles')
+	{!! Charts::assets() !!}
+@endpush
+
+
 @section('content')
 
     <div class="jumbotron">
@@ -8,5 +13,9 @@
 
       <div class="list-group" id="ajaxResult"></div>
     </div>
+
+    <center>
+        {!! $chart->render() !!}
+    </center>
 
 @endsection

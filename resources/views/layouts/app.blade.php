@@ -17,6 +17,8 @@
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <link rel="stylesheet" href="/css/app.css">
 
+    @stack('styles')
+
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
