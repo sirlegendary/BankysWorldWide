@@ -17,7 +17,7 @@ class CustomerController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +53,7 @@ class CustomerController extends Controller
 
             if($saved){
                 $latestCustomerID = collect($customer)->last();
-                return $this->redirectToProfile($latestCustomerID);
+                return redirect()->route('showCustomer', ['id' => $latestCustomerID]);
             }
 
         return redirect()->route('home');
@@ -174,7 +174,7 @@ class CustomerController extends Controller
         $customer = Customer::where('id', $customer_id)->get();
 
         $beneficiary = Beneficiary::where('customer_id', $customer_id)->get();
-        
+
         return view('pages.profile', ['customer' => $customer],['beneficiary' => $beneficiary]);
     }
 }
