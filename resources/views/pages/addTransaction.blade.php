@@ -58,7 +58,6 @@
 		    <div class="col-md-4">Received: <b>&pound;{{ $transaction['uk_pound'] }}</b></div>
 		  </div>
 		</div>
-		{{-- <p>{{ $transaction }}</p> --}}
 	@endforeach
 @endif
 

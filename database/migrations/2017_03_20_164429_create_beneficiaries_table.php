@@ -17,7 +17,7 @@ class CreateBeneficiariesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('bank');
-            $table->integer('account');
+            $table->string('account');
             $table->integer('customer_id');
             $table->timestamps();
         });
