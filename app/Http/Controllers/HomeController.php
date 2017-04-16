@@ -34,11 +34,11 @@ class HomeController extends Controller
       // dd($date);
 
       $chart = Charts::multi('line', 'highcharts')
-      ->title(' ')
       ->labels($date)
       ->dataset('Total ₦', $total_naira)
       ->dataset('Total £', $total_pound)
-      ->responsive(true);
+      ->responsive(true)
+      ->title(' ');
 
         return view('home', ['chart' => $chart]);
     }
