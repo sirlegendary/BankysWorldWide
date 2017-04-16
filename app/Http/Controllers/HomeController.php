@@ -26,21 +26,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::all();
-        
-        $chart = Charts::create('line', 'highcharts')
-             ->title('Transactions Chart')
-             ->elementLabel('Total Naira')
-             ->labels($transaction->pluck('created_at'))
-             ->values($transaction->pluck('total_naira'), $transaction->pluck('uk_pound'))
-             ->responsive(true);
+      $transaction = Transaction::all();
+      $total_naira = $transaction->pluck('total_naira');
+      $total_pound = $transaction->pluck('uk_pound');
+      $date = $transaction->pluck('created_at');
 
-            // $chart = Charts::database(Customer::all(), 'bar', 'highcharts')
-            // ->elementLabel("Total")
-            // ->title('Daily Customer Chart')
-            // ->dimensions(0, 500)
-            // ->responsive(true)
-            // ->groupByDay();
+      // dd($date);
+
+      $chart = Charts::multi('line', 'highcharts')
+      ->title(' ')
+      ->labels($date)
+      ->dataset('Total ₦', $total_naira)
+      ->dataset('Total £', $total_pound)
+      ->responsive(true);
 
         return view('home', ['chart' => $chart]);
     }
