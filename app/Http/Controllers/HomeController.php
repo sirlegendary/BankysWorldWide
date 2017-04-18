@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Charts;
 use App\Customer;
 use App\Transaction;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -29,21 +30,36 @@ class HomeController extends Controller
       $transaction = Transaction::all();
       $total_naira = $transaction->pluck('total_naira');
       $total_pound = $transaction->pluck('uk_pound');
-      $date = $transaction->pluck('created_at');
 
-      // dd($date);
+      $dateFrom = Carbon::now()->subDays(8);
+        $dateTo = Carbon::now();
+
+      $date = $this->extractAndFormatOnlyDate($dateFrom, $dateTo);
+
+
+
 
       $chart = Charts::multi('line', 'highcharts')
       ->labels($date)
+      ->dimensions(0, 700)
       ->dataset('Total ₦', $total_naira)
       ->dataset('Total £', $total_pound)
-      ->responsive(true)
+      // ->responsive(true)
       ->title(' ');
 
         return view('home', ['chart' => $chart]);
     }
+
+    private function extractAndFormatOnlyDate(Carbon $start_date, Carbon $end_date)
+    {
+        $dates = [];
+
+        for($date = $start_date; $date->lte($end_date); $date->addDay()) {
+           $dates[] = $date->format('d/m/Y');
+        }
+
+        return $dates;
+    }
+
 }
 
-/*
-*   bar     pie     donut   geo     gauge
-*/
