@@ -27,23 +27,43 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $transaction = Transaction::all();
+        $dateFrom = Carbon::now('Europe/London')->subDays(10);
+        $dateTo = Carbon::now('Europe/London');
+
+        $transaction = Transaction::all();
+        $dates = $this->extractAndFormatOnlyDate($dateFrom, $dateTo);
+
+        $nairaAndDate = Transaction::select('total_naira','created_at')
+                        ->get()
+                        ->groupBy(function($date) {
+                            return Carbon::parse($date->created_at)->format('d/m/Y'); // grouping by years
+                        });
+
+                        $nairaAndDate->sum('total_naira');
+
+
+        $poundAndDate = Transaction::select('uk_pound','created_at')->get();
+
       $total_naira = $transaction->pluck('total_naira');
+      // $total_date = $transaction->pluck('created_at');
       $total_pound = $transaction->pluck('uk_pound');
 
-      $dateFrom = Carbon::now()->subDays(8);
-        $dateTo = Carbon::now();
+        // dd($transaction, $nairaAndDate);
 
-      $date = $this->extractAndFormatOnlyDate($dateFrom, $dateTo);
 
+      
+        
+
+      // $dates = $this->extractAndFormatOnlyDate($dateFrom, $dateTo);
 
 
 
       $chart = Charts::multi('line', 'highcharts')
-      ->labels($date)
+      ->labels($dates)
       ->dimensions(0, 700)
       ->dataset('Total ₦', $total_naira)
       ->dataset('Total £', $total_pound)
+      ->credits(false)
       // ->responsive(true)
       ->title(' ');
 
